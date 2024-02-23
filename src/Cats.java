@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.geom.Point2D;
 
 public class Cats extends Pets{
@@ -14,6 +15,8 @@ public class Cats extends Pets{
                 imageComponent.getHeightImage()
         );
         Habitat.panelImages.add(imageComponent);
+        //Перерисовка картинок
+        Habitat.panelImages.repaint();
         Pets.countCats += 1;
         System.out.println("Cat " + p);
     }
