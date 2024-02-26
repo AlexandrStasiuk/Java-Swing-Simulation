@@ -4,13 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b96991b8-c599-4896-8ea5-af10f22b1233" name="Changes" comment="Лаба 1">
-      <change afterPath="$PROJECT_DIR$/src/DialogInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TextTime.java" afterDir="false" />
+    <list default="true" id="b96991b8-c599-4896-8ea5-af10f22b1233" name="Changes" comment="Лаба 2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Cats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cats.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Dogs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dogs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Habitat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Habitat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Cats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/laba/files/Cats.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DialogInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DialogInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Dogs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/laba/files/Dogs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Habitat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/laba/files/Habitat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IBehaviour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/laba/files/IBehaviour.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pets.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/laba/files/Pets.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TextTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TextTime.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +29,20 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;AlexandrStasiuk&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="187d6338-0a98-4472-90c4-694a52495572" />
+        <option name="url" value="https://github.com/AlexandrStasiuk/Laba-1.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -82,7 +98,8 @@
       <workItem from="1708360190591" duration="11025000" />
       <workItem from="1708420670692" duration="22436000" />
       <workItem from="1708600291265" duration="20425000" />
-      <workItem from="1708689969460" duration="3782000" />
+      <workItem from="1708689969460" duration="4448000" />
+      <workItem from="1708952575782" duration="4176000" />
     </task>
     <task id="LOCAL-00001" summary="Лаба 1">
       <option name="closed" value="true" />
@@ -92,7 +109,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708449272504</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Лаба 2">
+      <option name="closed" value="true" />
+      <created>1708695644016</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1708695644016</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -111,6 +136,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Лаба 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Лаба 1" />
+    <MESSAGE value="Лаба 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Лаба 2" />
   </component>
 </project>

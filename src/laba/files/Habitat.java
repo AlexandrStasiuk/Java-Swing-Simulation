@@ -1,9 +1,12 @@
+package laba.files;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 import java.util.Timer;
+import components.*;
 
 public class Habitat {
     //Список животных
@@ -24,8 +27,8 @@ public class Habitat {
     public static JFrame jFrame = getFrame();
     public static JPanel panelImages = new JPanel();
     public static JPanel panelButtons = new JPanel();
-    public static JButton startButton = new JButton("Старт");
-    public static JButton stopButton = new JButton("Стоп");
+    public static JMenuItem startButton = new JMenuItem("Старт");
+    public static JMenuItem stopButton = new JMenuItem("Стоп");
     public static JCheckBox showInfo = new JCheckBox("Показывать информацию");
     private static final Integer[] percents = {0, 10, 20, 30, 40, 50, 60, 70, 80 ,90, 100};
     public static JComboBox<Integer> comboBoxCats = new JComboBox<>(percents);
@@ -36,9 +39,11 @@ public class Habitat {
     public static TextField timerDogs = new TextField();
     public static JLabel labelTimerCats = new JLabel("Период рождения котов(сек.)");
     public static JLabel labelTimerDogs = new JLabel("Период рождения собак(сек.)");
-    public static JRadioButton showTime = new JRadioButton("Показать время работы");
-    public static JRadioButton hiddenTime = new JRadioButton("Скрыть время работы");
+    public static JRadioButtonMenuItem showTime = new JRadioButtonMenuItem("Показать время работы");
+    public static JRadioButtonMenuItem hiddenTime = new JRadioButtonMenuItem("Скрыть время работы");
     public static TextTime textTime = new TextTime();
+    public static JMenuBar jMenuBar = new JMenuBar();
+    public static JMenu jMenu = new JMenu("Меню");
     //Запущена ли симуляция
     public static boolean flStart = false;
     //Видимость времени
@@ -47,8 +52,10 @@ public class Habitat {
     private static boolean flShowInfo = true;
 
     public static void main(String[] args) {
+        addMenu();
         addPanels();
-        addUserMenu();
+        addUserFields();
+        jFrame.setVisible(true);
     }
     //Обновление таймера
     public static class UpdateTask extends TimerTask{
@@ -79,7 +86,6 @@ public class Habitat {
     //Создание окна симуляции
     private static JFrame getFrame(){
         JFrame jFrame = new JFrame();
-        jFrame.setVisible(true);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         //Определение рамеров окна
@@ -149,10 +155,13 @@ public class Habitat {
                 textTime.setVisible(false);
                 flStart = false;
                 setEnabledFields(true);
+                //Очистка старой симуляции
                 Habitat.petsArray.clear();
                 Habitat.timeElapsed = 0;
                 Pets.countCats = 0;
                 Pets.countDogs = 0;
+                panelImages.removeAll();
+                panelImages.repaint();
                 //Очистка таймера
                 if(updateTimer != null)
                     updateTimer.cancel();
@@ -182,31 +191,21 @@ public class Habitat {
         AbstractAction stopAction = new StopAction();
 
         //Кнопка старта симуляции
-        startButton.setBounds(WIDTH*25/100/2-75, 25, 150, 30);
         startButton.addActionListener(updateAction);
         startButton.setEnabled(true);
-        panelButtons.add(startButton);
+        startButton.setAccelerator(KeyStroke.getKeyStroke("B"));
+        jMenu.add(startButton);
 
         //Кнопка остановки симуляции
-        stopButton.setBounds(WIDTH*25/100/2-75, 75, 150, 30);
         stopButton.addActionListener(stopAction);
         stopButton.setEnabled(false);
-        panelButtons.add(stopButton);
-
-        //Добавление событий при нажатии на клавиши
-        KeyStroke updateKey = KeyStroke.getKeyStroke("B");
-        KeyStroke stopKey = KeyStroke.getKeyStroke("E");
-        InputMap inputMap = panelImages.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
-        inputMap.put(updateKey, "updateStart");
-        inputMap.put(stopKey, "updateStop");
-        ActionMap actionMap = panelImages.getActionMap();
-        actionMap.put("updateStart", updateAction);
-        actionMap.put("updateStop", stopAction);
+        stopButton.setAccelerator(KeyStroke.getKeyStroke("E"));
+        jMenu.add(stopButton);
 
     }
     //Добавление текста с таймером
     private static void addTextTime(){
-        textTime.setBounds(20, HEIGHT-75, WIDTH*25/100 - 50, 50);
+        textTime.setBounds(20, 5, WIDTH*25/100 - 50, 50);
         panelButtons.add(textTime);
         textTime.setVisible(false);
 
@@ -229,16 +228,11 @@ public class Habitat {
     }
     //Кнопки для скрытия таймера
     private static void addTimerButtons(){
-        Font font = new Font("Times New Roman", Font.BOLD, 16);
-
         //Группа кнопок
         ButtonGroup buttonGroup = new ButtonGroup();
         buttonGroup.add(showTime);
         buttonGroup.add(hiddenTime);
 
-        showTime.setBounds(50, 120, 250, 30);
-        showTime.setFont(font);
-        showTime.setBackground(new Color(208, 208, 208));
         showTime.setSelected(true);
         showTime.addActionListener(new ActionListener() {
             @Override
@@ -248,11 +242,8 @@ public class Habitat {
                 textTime.setVisible(flVisibleTime);
             }
         });
-        panelButtons.add(showTime);
+        jMenu.add(showTime);
 
-        hiddenTime.setBounds(50, 150, 250, 30);
-        hiddenTime.setFont(font);
-        hiddenTime.setBackground(new Color(208, 208, 208));
         hiddenTime.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -261,79 +252,72 @@ public class Habitat {
                 textTime.setVisible(flVisibleTime);
             }
         });
-        panelButtons.add(hiddenTime);
+        jMenu.add(hiddenTime);
     }
     //Текстовые поля для заполнения
     private static void addFields(){
-        Font font = new Font("Times New Roman", Font.BOLD, 16);
+        Font font = new Font("Times New Roman", Font.BOLD, 14);
 
-        //Лейбел для комбобокса кошачьего
-        labelComboCats.setBounds(50, 230, 250, 30);
+        //Лейбел для комбобокса у котов
+        labelComboCats.setBounds(20, 30, 250, 30);
         labelComboCats.setFont(font);
         labelComboCats.setBackground(new Color(208, 208, 208));
         panelButtons.add(labelComboCats);
 
-        //Комбобокс кошачий
-        comboBoxCats.setBounds(50, 260, 250, 30);
+        //Комбобокс у котов
+        comboBoxCats.setBounds(20, 60, 200, 30);
         comboBoxCats.setFont(font);
         panelButtons.add(comboBoxCats);
 
-        //Лейбел для комбобокса собачьего
-        labelComboDogs.setBounds(50, 300, 250, 30);
+        //Лейбел для комбобокса у собак
+        labelComboDogs.setBounds(20, 100, 250, 30);
         labelComboDogs.setFont(font);
         labelComboDogs.setBackground(new Color(208, 208, 208));
         panelButtons.add(labelComboDogs);
 
-        //Комбобокс собачий
-        comboBoxDogs.setBounds(50, 330, 250, 30);
+        //Комбобокс у собак
+        comboBoxDogs.setBounds(20, 130, 200, 30);
         comboBoxDogs.setFont(font);
         panelButtons.add(comboBoxDogs);
 
-        //Лейбел для текстового поля кошачьего
-        labelTimerCats.setBounds(50, 380, 250, 30);
+        //Лейбел для текстового поля у котов
+        labelTimerCats.setBounds(20, 180, 250, 30);
         labelTimerCats.setFont(font);
         labelTimerCats.setBackground(new Color(208, 208, 208));
         panelButtons.add(labelTimerCats);
 
-        //Текстовое поле кошачье
-        timerCats.setBounds(50, 410, 250, 30);
+        //Текстовое поле у котов
+        timerCats.setBounds(20, 210, 200, 30);
         timerCats.setFont(font);
         panelButtons.add(timerCats);
 
-        //Лейбел для текстового поля собачьего
-        labelTimerDogs.setBounds(50, 450, 250, 30);
+        //Лейбел для текстового поля у собак
+        labelTimerDogs.setBounds(20, 250, 250, 30);
         labelTimerDogs.setFont(font);
         labelTimerDogs.setBackground(new Color(208, 208, 208));
         panelButtons.add(labelTimerDogs);
 
-        //Текстовое поле собачье
-        timerDogs.setBounds(50, 480, 250, 30);
+        //Текстовое поле у собак
+        timerDogs.setBounds(20, 280, 200, 30);
         timerDogs.setFont(font);
         panelButtons.add(timerDogs);
     }
     //Пользовательское меню
-    private static void addUserMenu(){
+    private static void addUserFields(){
         //Текст таймера
         addTextTime();
-        //Поле с кнопками
-        addButtons();
-
-        //Поле с чекбоксом
-        Font font = new Font("Times New Roman", Font.BOLD, 16);
-        showInfo.setBounds(50, 180, 250, 30);
-        showInfo.setFont(font);
-        showInfo.setBackground(new Color(208, 208, 208));
-        panelButtons.add(showInfo);
-
-        //Поле с кнопками для таймера
-        addTimerButtons();
-        //Поле с полями для параметров
+        //Поля с параметрами
         addFields();
     }
     //Установка пользовательских значений
     private static void setUserData() throws NumberFormatException{
-        N1 = Integer.parseInt(timerCats.getText());
-        N2 = Integer.parseInt(timerDogs.getText());
+        int tempN1 = Integer.parseInt(timerCats.getText());
+        int tempN2 = Integer.parseInt(timerDogs.getText());
+        if(tempN1 < 0 || tempN2 < 0){
+            throw new NumberFormatException();
+        }
+        N1 = tempN1;
+        N2 = tempN2;
         P1 = (float)percents[comboBoxCats.getSelectedIndex()]/100;
         P2 = (float)percents[comboBoxDogs.getSelectedIndex()]/100;
     }
@@ -341,7 +325,7 @@ public class Habitat {
     private static void showErrorDialog(){
         JOptionPane.showMessageDialog(
                 panelImages,
-                "Вводимые данные должны содержать целое число",
+                "Вводимые данные должны содержать только целые положительные числа",
                 "Ошибка вводимых данных",
                 JOptionPane.ERROR_MESSAGE
         );
@@ -356,5 +340,17 @@ public class Habitat {
         timerDogs.setEnabled(enabled);
         labelTimerCats.setEnabled(enabled);
         labelTimerDogs.setEnabled(enabled);
+    }
+    private static void addMenu(){
+        jFrame.setJMenuBar(jMenuBar);
+        jMenuBar.add(jMenu);
+        //Поле с кнопками
+        addButtons();
+        jMenu.addSeparator();
+        //Поле с чекбоксом
+        addTimerButtons();
+        jMenu.addSeparator();
+        //Показ информации
+        jMenu.add(showInfo);
     }
 }

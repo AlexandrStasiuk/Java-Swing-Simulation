@@ -1,3 +1,8 @@
+package components;
+
+import laba.files.Habitat;
+import laba.files.Pets;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -63,11 +68,13 @@ public class DialogInfo extends JDialog {
                 Habitat.startButton.setEnabled(true);
                 Habitat.stopButton.setEnabled(false);
                 Habitat.setEnabledFields(true);
-                //Очистка сессии
+                //Очистка старой симуляции
                 Habitat.petsArray.clear();
                 Habitat.timeElapsed = 0;
                 Pets.countCats = 0;
                 Pets.countDogs = 0;
+                Habitat.panelImages.removeAll();
+                Habitat.panelImages.repaint();
                 Habitat.textTime.setVisible(false);
                 dispose();
             }
