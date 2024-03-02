@@ -3,10 +3,46 @@ package laba.files;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Point2D;
+import java.util.Objects;
 import java.util.Random;
 
 //Абстрактный класс животных
 public abstract class Pets implements IBehaviour{
+    private String type;
+    private int timeBirth;
+    private int id;
+
+    public String getType() {
+        return type;
+    }
+
+    private ImageComponent imageComponent;
+
+    public ImageComponent getImageComponent() {
+        return imageComponent;
+    }
+
+    public int getTimeBirth() {
+        return timeBirth;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public Pets(int timeBirth, String fileName, String type) {
+        this.imageComponent = new ImageComponent(fileName);
+        this.timeBirth = timeBirth;
+        this.type = type;
+        Random random = new Random();
+        //генерация id и проверка на уникальность
+        int id = random.ints(1, 1000000).findFirst().getAsInt();
+        //Проверка id на уникальность
+        while(Habitat.petsIdsSet.contains(id)){
+            id = random.ints(1, 1000000).findFirst().getAsInt();
+        }
+        this.id = id;
+    }
     //Счетчики отдельных животных
     public static int countCats = 0;
     public static int countDogs = 0;
@@ -43,6 +79,26 @@ public abstract class Pets implements IBehaviour{
                         getAsInt()
         );
     }
-    //Абстрацтный метод добавления картинки
+    //Абстрактный метод добавления картинки
     public abstract void setImage();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pets pets = (Pets) o;
+        return timeBirth == pets.timeBirth && id == pets.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash( timeBirth, id);
+    }
+
+    @Override
+    public String toString() {
+        return "Животное = '" + type + '\'' +
+                ", Время рождения = " + timeBirth +
+                ", Id = " + id;
+    }
 }

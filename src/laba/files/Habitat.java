@@ -5,19 +5,25 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
+import java.util.List;
 import java.util.Timer;
 import components.*;
 
 public class Habitat {
     //Список животных
-    public static ArrayList<Pets> petsArray = new ArrayList<>();
+    public static ArrayList<Pets> petsList = new ArrayList<>();
+    public static TreeSet<Integer> petsIdsSet = new TreeSet<>();
+    public static HashMap<Integer, Integer> petsTimeBirthMap = new HashMap<>();
+
     //Время работы
     public static int timeElapsed = 0;
     //Параметры согласно варианту
-    private static int N1 = 2;
-    private static float P1 = 0.5f;
-    private static int N2 = 6;
-    private static float P2 = 0.7f;
+    private static int N1 = 1;
+    private static float P1 = 1f;
+    private static int L1 = 10;
+    private static int N2 = 1;
+    private static float P2 = 1f;
+    private static int L2 = 1;
     //Размеры экрана
     public static int WIDTH = 0;
     public static int HEIGHT = 0;
@@ -51,6 +57,11 @@ public class Habitat {
     public static TextTime textTime = new TextTime();
     public static JMenuBar jMenuBar = new JMenuBar();
     public static JMenu jMenu = new JMenu("Меню");
+    public static TextField timeLifeCats = new TextField();
+    public static TextField timeLifeDogs = new TextField();
+    public static JLabel labelTimeLifeCats = new JLabel("Время жизни котов(сек.)");
+    public static JLabel labelTimeLifeDogs = new JLabel("Время жизни собак(сек.)");
+    public static JMenuItem showLiveObjects = new JMenuItem("Показать все живые объекты");
     //Запущена ли симуляция
     public static boolean flStart = false;
     //Видимость времени
@@ -77,16 +88,53 @@ public class Habitat {
         //Изменение времени
         timeElapsed += 1;
         textTime.repaint();
+        //Удаление объекта
+        petsTimeBirthMap.entrySet().removeIf(petMap -> {
+            Integer key = petMap.getKey();
+            Integer value = petMap.getValue();
+            //Проверка на истекшее время жизни
+            if(value <= timeElapsed - L1){
+                //Перебор объектов
+                for(Pets pet: petsList){
+                    //Если объект соответсвует параметрам, то удалить его везде
+                    if(pet.getType().equals("cat") && pet.getTimeBirth() == value && pet.getId() == key){
+                        panelImages.remove(pet.getImageComponent());
+                        petsIdsSet.remove(key);
+                        petsList.remove(pet);
+                        return true;
+                    }
+                }
+            }
+            //Проверка на истекшее время жизни
+            if(value <= timeElapsed - L2){
+                //Перебор объектов
+                for(Pets pet: petsList){
+                    //Если объект соответсвует параметрам, то удалить его везде
+                    if(pet.getType().equals("dog") && pet.getTimeBirth() == value && pet.getId() == key){
+                        panelImages.remove(pet.getImageComponent());
+                        petsIdsSet.remove(key);
+                        petsList.remove(pet);
+                        return true;
+                    }
+                }
+            }
+            return false;
+        });
+        panelImages.repaint();
         //Добавление кота
         if (N1 != 0 && timeElapsed % N1 == 0 && random.nextDouble() <= P1) {
-            Cats cat = new Cats();
-            petsArray.add(cat);
+            Cats cat = new Cats(timeElapsed, L1);
+            petsList.add(cat);
+            petsIdsSet.add(cat.getId());
+            petsTimeBirthMap.put(cat.getId(), cat.getTimeBirth());
             cat.setImage();
         }
         //Добавление собаки
         if (N2 != 0 && timeElapsed % N2 == 0 && random.nextDouble() <= P2) {
-            Dogs dog = new Dogs();
-            petsArray.add(dog);
+            Dogs dog = new Dogs(timeElapsed, L2);
+            petsList.add(dog);
+            petsIdsSet.add(dog.getId());
+            petsTimeBirthMap.put(dog.getId(), dog.getTimeBirth());
             dog.setImage();
         }
     }
@@ -142,6 +190,8 @@ public class Habitat {
                     timerDogs.setText(String.valueOf(N2));
                     comboBoxCats.setSelectedItem((int)(P1*100));
                     comboBoxDogs.setSelectedItem((int)(P2*100));
+                    timeLifeCats.setText(String.valueOf(L1));
+                    timeLifeDogs.setText(String.valueOf(L2));
                     //Окно с ошибкой
                     showErrorDialog();
                 }
@@ -203,7 +253,9 @@ public class Habitat {
     }
     //Очистка сессии
     public static void clearSession(){
-        petsArray.clear();
+        petsList.clear();
+        petsIdsSet.clear();
+        petsTimeBirthMap.clear();
         timeElapsed = 0;
         Pets.countCats = 0;
         Pets.countDogs = 0;
@@ -282,48 +334,70 @@ public class Habitat {
     //Текстовые поля для заполнения
     private static void addFields(){
         //Лейбел для комбобокса у котов
-        labelComboCats.setBounds(20, 200, 250, 30);
+        labelComboCats.setBounds(20, 200, 250, 20);
         labelComboCats.setFont(font);
         labelComboCats.setBackground(new Color(208, 208, 208));
         panelButtons.add(labelComboCats);
 
         //Комбобокс у котов
-        comboBoxCats.setBounds(20, 230, 200, 30);
+        comboBoxCats.setBounds(20, 220, 200, 20);
         comboBoxCats.setFont(font);
         panelButtons.add(comboBoxCats);
 
         //Лейбел для комбобокса у собак
-        labelComboDogs.setBounds(20, 260, 250, 30);
+        labelComboDogs.setBounds(20, 240, 250, 20);
         labelComboDogs.setFont(font);
         labelComboDogs.setBackground(new Color(208, 208, 208));
         panelButtons.add(labelComboDogs);
 
         //Комбобокс у собак
-        comboBoxDogs.setBounds(20, 290, 200, 30);
+        comboBoxDogs.setBounds(20, 260, 200, 20);
         comboBoxDogs.setFont(font);
         panelButtons.add(comboBoxDogs);
 
         //Лейбел для текстового поля у котов
-        labelTimerCats.setBounds(20, 320, 250, 30);
+        labelTimerCats.setBounds(20, 280, 250, 20);
         labelTimerCats.setFont(font);
         labelTimerCats.setBackground(new Color(208, 208, 208));
         panelButtons.add(labelTimerCats);
 
         //Текстовое поле у котов
-        timerCats.setBounds(20, 350, 200, 30);
+        timerCats.setBounds(20, 300, 200, 20);
         timerCats.setFont(font);
         panelButtons.add(timerCats);
 
         //Лейбел для текстового поля у собак
-        labelTimerDogs.setBounds(20, 380, 250, 30);
+        labelTimerDogs.setBounds(20, 320, 250, 20);
         labelTimerDogs.setFont(font);
         labelTimerDogs.setBackground(new Color(208, 208, 208));
         panelButtons.add(labelTimerDogs);
 
         //Текстовое поле у собак
-        timerDogs.setBounds(20, 410, 200, 30);
+        timerDogs.setBounds(20, 340, 200, 20);
         timerDogs.setFont(font);
         panelButtons.add(timerDogs);
+
+        //Лейбел времени жизни у котов
+        labelTimeLifeCats.setBounds(20, 360, 250, 20);
+        labelTimeLifeCats.setFont(font);
+        labelTimeLifeCats.setBackground(new Color(208, 208, 208));
+        panelButtons.add(labelTimeLifeCats);
+
+        //Текстовое поле времени жизни у котов
+        timeLifeCats.setBounds(20, 380, 200, 20);
+        timeLifeCats.setFont(font);
+        panelButtons.add(timeLifeCats);
+
+        //Лейбел времени жизни у собак
+        labelTimeLifeDogs.setBounds(20, 400, 250, 20);
+        labelTimeLifeDogs.setFont(font);
+        labelTimeLifeDogs.setBackground(new Color(208, 208, 208));
+        panelButtons.add(labelTimeLifeDogs);
+
+        //Текстовое поле времени жизни у собак
+        timeLifeDogs.setBounds(20, 420, 200, 20);
+        timeLifeDogs.setFont(font);
+        panelButtons.add(timeLifeDogs);
     }
     //Пользовательское меню
     private static void addUserInterface(){
@@ -406,6 +480,8 @@ public class Habitat {
                     timerDogs.setText(String.valueOf(N2));
                     comboBoxCats.setSelectedItem((int)(P1*100));
                     comboBoxDogs.setSelectedItem((int)(P2*100));
+                    timeLifeCats.setText(String.valueOf(L1));
+                    timeLifeDogs.setText(String.valueOf(L2));
                     //Окно с ошибкой
                     showErrorDialog();
                 }
@@ -418,11 +494,15 @@ public class Habitat {
     private static void setUserData() throws NumberFormatException{
         int tempN1 = Integer.parseInt(timerCats.getText());
         int tempN2 = Integer.parseInt(timerDogs.getText());
-        if(tempN1 < 0 || tempN2 < 0){
+        int tempL1 = Integer.parseInt(timeLifeCats.getText());
+        int tempL2 = Integer.parseInt(timeLifeDogs.getText());
+        if(tempN1 < 0 || tempN2 < 0 || tempL1 <= 0 || tempL2 <= 0){
             throw new NumberFormatException();
         }
         N1 = tempN1;
         N2 = tempN2;
+        L1 = tempL1;
+        L2 = tempL2;
         P1 = (float)percents[comboBoxCats.getSelectedIndex()]/100;
         P2 = (float)percents[comboBoxDogs.getSelectedIndex()]/100;
     }
@@ -448,5 +528,14 @@ public class Habitat {
         //Показ информации
         showInfoMenu.addActionListener(new ShowInfoAction());
         jMenu.add(showInfoMenu);
+        jMenu.addSeparator();
+        //Живые объекты
+        jMenu.add(showLiveObjects);
+        showLiveObjects.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new DialogLiveObjects(petsList).setVisible(true);
+            }
+        });
     }
 }
