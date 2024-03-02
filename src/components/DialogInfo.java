@@ -64,17 +64,9 @@ public class DialogInfo extends JDialog {
         okBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Habitat.flStart = false;
-                Habitat.startButton.setEnabled(true);
-                Habitat.stopButton.setEnabled(false);
-                Habitat.setEnabledFields(true);
+                Habitat.setEnableStart(true);
                 //Очистка старой симуляции
-                Habitat.petsArray.clear();
-                Habitat.timeElapsed = 0;
-                Pets.countCats = 0;
-                Pets.countDogs = 0;
-                Habitat.panelImages.removeAll();
-                Habitat.panelImages.repaint();
+                Habitat.clearSession();
                 Habitat.textTime.setVisible(false);
                 dispose();
             }
