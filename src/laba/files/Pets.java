@@ -1,10 +1,13 @@
 package laba.files;
 
+import constants.Parameters;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.Objects;
 import java.util.Random;
+import static constants.Parameters.*;
 
 //Абстрактный класс животных
 public abstract class Pets implements IBehaviour{
@@ -38,7 +41,7 @@ public abstract class Pets implements IBehaviour{
         //генерация id и проверка на уникальность
         int id = random.ints(1, 1000000).findFirst().getAsInt();
         //Проверка id на уникальность
-        while(Habitat.petsIdsSet.contains(id)){
+        while(petsIdsSet.contains(id)){
             id = random.ints(1, 1000000).findFirst().getAsInt();
         }
         this.id = id;
@@ -70,11 +73,11 @@ public abstract class Pets implements IBehaviour{
     public Point2D generatePoints(){
         return new Point2D.Double(
                 new Random().
-                        ints(0, Habitat.WIDTH*75/100-100).
+                        ints(0, WIDTH*75/100-100).
                         findFirst().
                         getAsInt(),
                 new Random().
-                        ints(0, Habitat.HEIGHT-115).
+                        ints(0, HEIGHT-115).
                         findFirst().
                         getAsInt()
         );

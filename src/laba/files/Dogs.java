@@ -2,6 +2,8 @@ package laba.files;
 
 import java.awt.geom.Point2D;
 
+import static constants.Components.panelImages;
+
 public class Dogs extends Pets{
     public static int timeLife;
 
@@ -21,9 +23,9 @@ public class Dogs extends Pets{
                 getImageComponent().getWidthImage(),
                 getImageComponent().getHeightImage()
         );
-        Habitat.panelImages.add(getImageComponent());
+        panelImages.add(getImageComponent());
         //Перерисовка картинок
-        Habitat.panelImages.repaint();
+        panelImages.repaint();
         Pets.countDogs += 1;
     }
 }

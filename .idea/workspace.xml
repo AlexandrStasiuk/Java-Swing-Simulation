@@ -4,9 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b96991b8-c599-4896-8ea5-af10f22b1233" name="Changes" comment="Лаба 2">
-      <change afterPath="$PROJECT_DIR$/src/components/DialogLiveObjects.java" afterDir="false" />
+    <list default="true" id="b96991b8-c599-4896-8ea5-af10f22b1233" name="Changes" comment="Лаба 3">
+      <change afterPath="$PROJECT_DIR$/src/actions/HiddenTimeAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/actions/ShowInfoAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/actions/StopAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/actions/UpdateAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ButtonsMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/FrameCustom.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Menu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Panels.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/TimerButtonsMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/UserFields.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/UserInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/constants/Components.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/constants/Parameters.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DialogInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DialogInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DialogLiveObjects.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DialogLiveObjects.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TextTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TextTime.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/laba/files/Cats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/laba/files/Cats.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/laba/files/Dogs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/laba/files/Dogs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/laba/files/Habitat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/laba/files/Habitat.java" afterDir="false" />
@@ -99,7 +114,8 @@
       <workItem from="1708689969460" duration="4448000" />
       <workItem from="1708952575782" duration="6205000" />
       <workItem from="1709214628468" duration="48000" />
-      <workItem from="1709365031018" duration="29622000" />
+      <workItem from="1709365031018" duration="29698000" />
+      <workItem from="1709453899544" duration="4265000" />
     </task>
     <task id="LOCAL-00001" summary="Лаба 1">
       <option name="closed" value="true" />
@@ -133,7 +149,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709371207455</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Лаба 3">
+      <option name="closed" value="true" />
+      <created>1709394805560</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1709394805560</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -153,6 +177,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Лаба 1" />
     <MESSAGE value="Лаба 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Лаба 2" />
+    <MESSAGE value="Лаба 3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Лаба 3" />
   </component>
 </project>

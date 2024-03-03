@@ -1,5 +1,6 @@
 package components;
 
+import constants.Parameters;
 import laba.files.Habitat;
 import laba.files.Pets;
 
@@ -8,17 +9,20 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
+import static constants.Components.jFrame;
+
 //Модальное окно со списком живых объектов
 public class DialogLiveObjects extends JDialog {
     public DialogLiveObjects(ArrayList<Pets> list) {
         //Создание модального окна
-        super(Habitat.jFrame, "Все живые объекты", true);
+        super(jFrame, "Все живые объекты", true);
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         setBounds(
-                dimension.width/2-Habitat.WIDTH/4,
-                dimension.height/2-Habitat.HEIGHT/4,
-                Habitat.WIDTH/2,
-                Habitat.HEIGHT/2
+                dimension.width/2- Parameters.WIDTH/4,
+                dimension.height/2-Parameters.HEIGHT/4,
+                Parameters.WIDTH/2,
+                Parameters.HEIGHT/2
         );
 
         JPanel jPanel = new JPanel();

@@ -1,7 +1,8 @@
 package laba.files;
 
 import java.awt.geom.Point2D;
-import java.util.Random;
+
+import static constants.Components.panelImages;
 
 public class Cats extends Pets{
     public static int timeLife;
@@ -21,9 +22,9 @@ public class Cats extends Pets{
                 getImageComponent().getWidthImage(),
                 getImageComponent().getHeightImage()
         );
-        Habitat.panelImages.add(getImageComponent());
+        panelImages.add(getImageComponent());
         //Перерисовка картинок
-        Habitat.panelImages.repaint();
+        panelImages.repaint();
         Pets.countCats += 1;
     }
 

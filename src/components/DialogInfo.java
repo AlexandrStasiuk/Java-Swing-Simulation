@@ -1,5 +1,6 @@
 package components;
 
+import constants.Parameters;
 import laba.files.Habitat;
 import laba.files.Pets;
 
@@ -12,25 +13,29 @@ import java.awt.event.WindowEvent;
 import java.text.MessageFormat;
 import java.util.Timer;
 
+import static constants.Components.jFrame;
+import static constants.Components.textTime;
+import static constants.Parameters.*;
+
 //Кастомное диалоговое окно с информацией
 public class DialogInfo extends JDialog {
     public DialogInfo() {
         //Создание модального окна
-        super(Habitat.jFrame, "Информация об объектах", true);
+        super(jFrame, "Информация об объектах", true);
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         setBounds(
-                dimension.width/2-Habitat.WIDTH/4,
-                dimension.height/2-Habitat.HEIGHT/4,
-                Habitat.WIDTH/2,
-                Habitat.HEIGHT/2
+                dimension.width/2- Parameters.WIDTH/4,
+                dimension.height/2-Parameters.HEIGHT/4,
+                Parameters.WIDTH/2,
+                Parameters.HEIGHT/2
         );
         //Изменение адаптера закрытия окна
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                Habitat.updateTimer = new Timer();
-                Habitat.updateTimer.schedule(new Habitat.UpdateTask(),0,  1000);
+                updateTimer = new Timer();
+                updateTimer.schedule(new Habitat.UpdateTask(),0,  1000);
                 dispose();
             }
         });
@@ -46,7 +51,7 @@ public class DialogInfo extends JDialog {
         JTextArea textStatistics = new JTextArea();
         String s = MessageFormat.format(
                 "\tВремя работы симуляции - {0} сек.\n\tКошек сгенерировано - {1}\n\tСобак сгенерировано - {2}",
-                Habitat.timeElapsed,
+                timeElapsed,
                 Pets.countCats,
                 Pets.countDogs
         );
@@ -67,7 +72,7 @@ public class DialogInfo extends JDialog {
                 Habitat.setEnableStart(true);
                 //Очистка старой симуляции
                 Habitat.clearSession();
-                Habitat.textTime.setVisible(false);
+                textTime.setVisible(false);
                 dispose();
             }
         });
@@ -79,8 +84,8 @@ public class DialogInfo extends JDialog {
         cancelBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Habitat.updateTimer = new Timer();
-                Habitat.updateTimer.schedule(new Habitat.UpdateTask(),0,  1000);
+                updateTimer = new Timer();
+                updateTimer.schedule(new Habitat.UpdateTask(),0,  1000);
                 dispose();
             }
         });
