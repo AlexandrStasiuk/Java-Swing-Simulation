@@ -57,7 +57,10 @@ public class UserInterface {
         showTime.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                textTime.setVisible(flVisibleTime);
+                flVisibleTime = !flVisibleTime;
+                if (flStart)
+                    textTime.setVisible(flVisibleTime);
+                showTimeMenu.setSelected(showTime.isSelected());
             }
         });
         panelButtons.add(showTime);
@@ -67,7 +70,10 @@ public class UserInterface {
         hiddenTime.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                textTime.setVisible(flVisibleTime);
+                flVisibleTime = !flVisibleTime;
+                if (flStart)
+                    textTime.setVisible(flVisibleTime);
+                hiddenTimeMenu.setSelected(hiddenTime.isSelected());
             }
         });
         panelButtons.add(hiddenTime);
@@ -83,7 +89,7 @@ public class UserInterface {
         UserFields.addFields();
 
         //Кнопка обновления параметров
-        updateParameters.setBounds(20, 445, 150, 30);
+        updateParameters.setBounds(20, 525, 150, 30);
         updateParameters.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -98,6 +104,8 @@ public class UserInterface {
                     comboBoxDogs.setSelectedItem((int)(P2*100));
                     timeLifeCats.setText(String.valueOf(L1));
                     timeLifeDogs.setText(String.valueOf(L2));
+                    speedCats.setText(String.valueOf(V1));
+                    speedDogs.setText(String.valueOf(V2));
                     //Вывод диалогового окна с ошибкой
                     JOptionPane.showMessageDialog(
                             panelImages,

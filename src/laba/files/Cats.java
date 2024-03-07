@@ -27,5 +27,4 @@ public class Cats extends Pets{
         panelImages.repaint();
         Pets.countCats += 1;
     }
-
 }

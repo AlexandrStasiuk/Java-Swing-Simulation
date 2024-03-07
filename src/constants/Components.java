@@ -39,5 +39,11 @@ public class Components {
     public static TextField timeLifeDogs = new TextField();
     public static JLabel labelTimeLifeCats = new JLabel("Время жизни котов(сек.)");
     public static JLabel labelTimeLifeDogs = new JLabel("Время жизни собак(сек.)");
+    public static TextField speedCats = new TextField();
+    public static TextField speedDogs = new TextField();
+    public static JLabel labelSpeedCats = new JLabel("Скорость котов(пикс./сек.)");
+    public static JLabel labelSpeedDogs = new JLabel("Скорость собак(пикс./сек.)");
     public static JMenuItem showLiveObjects = new JMenuItem("Показать все живые объекты");
+    public static JCheckBox moveCats = new JCheckBox("Передвижение котов");
+    public static JCheckBox moveDogs = new JCheckBox("Передвижение собак");
 }

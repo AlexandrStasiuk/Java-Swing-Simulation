@@ -14,6 +14,8 @@ public abstract class Pets implements IBehaviour{
     private String type;
     private int timeBirth;
     private int id;
+    int speedTraectoryX = 1;
+    int speedTraectoryY = 1;
 
     public String getType() {
         return type;
@@ -77,7 +79,7 @@ public abstract class Pets implements IBehaviour{
                         findFirst().
                         getAsInt(),
                 new Random().
-                        ints(0, HEIGHT-115).
+                        ints(0, HEIGHT-150).
                         findFirst().
                         getAsInt()
         );

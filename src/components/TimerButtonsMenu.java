@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static constants.Parameters.flStart;
 import static constants.Parameters.flVisibleTime;
 import static constants.Components.*;
 
@@ -20,8 +21,10 @@ public class TimerButtonsMenu {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //Изменение видимости таймера
-                flVisibleTime = true;
-                textTime.setVisible(flVisibleTime);
+                flVisibleTime = !flVisibleTime;
+                if (flStart)
+                    textTime.setVisible(flVisibleTime);
+                showTime.setSelected(showTimeMenu.isSelected());
             }
         });
         jMenu.add(showTimeMenu);
@@ -30,8 +33,10 @@ public class TimerButtonsMenu {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //Изменение видимости таймера
-                flVisibleTime = false;
-                textTime.setVisible(flVisibleTime);
+                flVisibleTime = !flVisibleTime;
+                if (flStart)
+                    textTime.setVisible(flVisibleTime);
+                hiddenTime.setSelected(hiddenTimeMenu.isSelected());
             }
         });
         jMenu.add(hiddenTimeMenu);

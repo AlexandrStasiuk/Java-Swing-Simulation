@@ -1,6 +1,7 @@
 package components;
 
 import actions.ShowInfoAction;
+import laba.files.BaseAI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,5 +31,11 @@ public class Menu {
                 new DialogLiveObjects(petsList).setVisible(true);
             }
         });
+        jMenu.addSeparator();
+        //Движение объектов
+        moveCats.setSelected(true);
+        moveDogs.setSelected(true);
+        jMenu.add(moveCats);
+        jMenu.add(moveDogs);
     }
 }

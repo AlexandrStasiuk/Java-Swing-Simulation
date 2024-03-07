@@ -73,5 +73,27 @@ public class UserFields {
         timeLifeDogs.setBounds(20, 420, 200, 20);
         timeLifeDogs.setFont(font);
         panelButtons.add(timeLifeDogs);
+
+        //Лейбел скорости у котов
+        labelSpeedCats.setBounds(20, 440, 250, 20);
+        labelSpeedCats.setFont(font);
+        labelSpeedCats.setBackground(new Color(208, 208, 208));
+        panelButtons.add(labelSpeedCats);
+
+        //Текстовое поле скорости котов
+        speedCats.setBounds(20, 460, 200, 20);
+        speedCats.setFont(font);
+        panelButtons.add(speedCats);
+
+        //Лейбел скорости у собак
+        labelSpeedDogs.setBounds(20, 480, 250, 20);
+        labelSpeedDogs.setFont(font);
+        labelSpeedDogs.setBackground(new Color(208, 208, 208));
+        panelButtons.add(labelSpeedDogs);
+
+        //Текстовое поле скорости собак
+        speedDogs.setBounds(20, 500, 200, 20);
+        speedDogs.setFont(font);
+        panelButtons.add(speedDogs);
     }
 }

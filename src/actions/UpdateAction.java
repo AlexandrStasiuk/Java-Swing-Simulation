@@ -32,6 +32,8 @@ public class UpdateAction extends AbstractAction {
                 comboBoxDogs.setSelectedItem((int)(P2*100));
                 timeLifeCats.setText(String.valueOf(L1));
                 timeLifeDogs.setText(String.valueOf(L2));
+                speedCats.setText(String.valueOf(V1));
+                speedDogs.setText(String.valueOf(V2));
                 //Вывод диалогового окна с ошибкой
                 JOptionPane.showMessageDialog(
                         panelImages,

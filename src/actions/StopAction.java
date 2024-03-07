@@ -18,6 +18,9 @@ public class StopAction extends AbstractAction {
             //Отключение симуляции во время работы окна
             if(updateTimer != null)
                 updateTimer.cancel();
+            //Остановка потока
+            if(petsMoveThreads != null && !petsMoveThreads.isShutdown())
+                petsMoveThreads.shutdown();
             //Диалоговое окно с информацией
             DialogInfo dialogInfo = new DialogInfo();
             dialogInfo.setVisible(true);
@@ -30,6 +33,9 @@ public class StopAction extends AbstractAction {
             //Очистка таймера
             if(updateTimer != null)
                 updateTimer.cancel();
+            //Остановка потока
+            if(petsMoveThreads != null && !petsMoveThreads.isShutdown())
+                petsMoveThreads.shutdown();
         }
     }
 }
