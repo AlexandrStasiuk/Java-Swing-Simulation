@@ -18,6 +18,8 @@ public class Parameters {
     public static HashMap<Integer, Integer> petsTimeBirthMap = new HashMap<>();
     //Thread pool для расчета интеллекта объектов
     public static ExecutorService petsMoveThreads = Executors.newCachedThreadPool();
+    //Поток для генерации объекта
+    public static Thread generationThread;
     //Время работы
     public static int timeElapsed = 0;
     //Параметры согласно варианту

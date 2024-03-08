@@ -46,4 +46,6 @@ public class Components {
     public static JMenuItem showLiveObjects = new JMenuItem("Показать все живые объекты");
     public static JCheckBox moveCats = new JCheckBox("Передвижение котов");
     public static JCheckBox moveDogs = new JCheckBox("Передвижение собак");
+    public static JMenu mainPriority = new JMenu("Приоритет основного потока");
+    public static JMenu generationPriority = new JMenu("Приоритет потоков генерации");
 }

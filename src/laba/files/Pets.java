@@ -41,10 +41,10 @@ public abstract class Pets implements IBehaviour{
         this.type = type;
         Random random = new Random();
         //генерация id и проверка на уникальность
-        int id = random.ints(1, 1000000).findFirst().getAsInt();
+        int id = random.nextInt(1000000);
         //Проверка id на уникальность
         while(petsIdsSet.contains(id)){
-            id = random.ints(1, 1000000).findFirst().getAsInt();
+            id = random.nextInt(1000000);
         }
         this.id = id;
     }

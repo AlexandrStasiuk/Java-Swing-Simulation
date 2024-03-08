@@ -64,7 +64,7 @@ public class Habitat {
         //Добавление кота
         if (N1 != 0 && timeElapsed % N1 == 0 && random.nextDouble() <= P1) {
             //Поток генерации
-            Thread thread = new Thread(new Runnable() {
+            generationThread = new Thread(new Runnable() {
                 @Override
                 public void run() {
                     Cats cat = new Cats(timeElapsed, L1);
@@ -75,10 +75,10 @@ public class Habitat {
                 }
             });
             //Запуск потока
-            thread.start();
+            generationThread.start();
             //Ожидание выполнения потока
             try {
-                thread.join();
+                generationThread.join();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -86,7 +86,7 @@ public class Habitat {
         //Добавление собаки
         if (N2 != 0 && timeElapsed % N2 == 0 && random.nextDouble() <= P2) {
             //Поток генерации
-            Thread thread = new Thread(new Runnable() {
+            generationThread = new Thread(new Runnable() {
                 @Override
                 public void run() {
                     Dogs dog = new Dogs(timeElapsed, L2);
@@ -97,10 +97,10 @@ public class Habitat {
                 }
             });
             //Запуск потока
-            thread.start();
+            generationThread.start();
             //Ожидание выполнения потока
             try {
-                thread.join();
+                generationThread.join();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
