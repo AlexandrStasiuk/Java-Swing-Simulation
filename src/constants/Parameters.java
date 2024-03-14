@@ -2,6 +2,8 @@ package constants;
 
 import laba.files.Pets;
 
+import java.io.PipedInputStream;
+import java.io.PipedOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Timer;
@@ -18,8 +20,6 @@ public class Parameters {
     public static HashMap<Integer, Integer> petsTimeBirthMap = new HashMap<>();
     //Thread pool для расчета интеллекта объектов
     public static ExecutorService petsMoveThreads = Executors.newCachedThreadPool();
-    //Поток для генерации объекта
-    public static Thread generationThread;
     //Время работы
     public static int timeElapsed = 0;
     //Параметры согласно варианту
@@ -42,4 +42,6 @@ public class Parameters {
     public static boolean flVisibleTime = true;
     //Видимость диалогового окна
     public static boolean flShowInfo = false;
+    //Есть ли подгруженные объекты из файла
+    public static boolean flPreloadPets = false;
 }

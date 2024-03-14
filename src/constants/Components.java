@@ -47,5 +47,9 @@ public class Components {
     public static JCheckBox moveCats = new JCheckBox("Передвижение котов");
     public static JCheckBox moveDogs = new JCheckBox("Передвижение собак");
     public static JMenu mainPriority = new JMenu("Приоритет основного потока");
-    public static JMenu generationPriority = new JMenu("Приоритет потоков генерации");
+    public static JCheckBox generationCats = new JCheckBox("Генерация котов");
+    public static JCheckBox generationDogs = new JCheckBox("Генерация собак");
+    public static JMenuItem showConsole = new JMenuItem("Консоль");
+    public static JMenuItem savePets = new JMenuItem("Сохранить в файл");
+    public static JMenuItem loadPets = new JMenuItem("Загрузить из файла");
 }

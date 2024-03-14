@@ -16,7 +16,6 @@ public class TimerButtonsMenu {
         buttonGroup.add(showTimeMenu);
         buttonGroup.add(hiddenTimeMenu);
 
-        showTimeMenu.setSelected(true);
         showTimeMenu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -40,5 +39,12 @@ public class TimerButtonsMenu {
             }
         });
         jMenu.add(hiddenTimeMenu);
+        if(flVisibleTime){
+            showTimeMenu.setSelected(true);
+            hiddenTimeMenu.setSelected(false);
+        }else {
+            showTimeMenu.setSelected(false);
+            hiddenTimeMenu.setSelected(true);
+        }
     }
 }

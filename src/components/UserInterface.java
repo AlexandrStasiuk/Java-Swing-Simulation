@@ -53,7 +53,6 @@ public class UserInterface {
         showTime.setBounds(20, 110, 250, 30);
         showTime.setFont(font);
         showTime.setBackground(new Color(208, 208, 208));
-        showTime.setSelected(true);
         showTime.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -77,10 +76,18 @@ public class UserInterface {
             }
         });
         panelButtons.add(hiddenTime);
+        if(flVisibleTime){
+            showTime.setSelected(true);
+            hiddenTime.setSelected(false);
+        }else {
+            showTime.setSelected(false);
+            hiddenTime.setSelected(true);
+        }
 
         //Поле с чекбоксом
         showInfo.setBounds(20, 170, 250, 30);
         showInfo.setFont(font);
+        showInfo.setSelected(flShowInfo);
         showInfo.setBackground(new Color(208, 208, 208));
         showInfo.addActionListener(new ShowInfoAction());
         panelButtons.add(showInfo);
@@ -107,9 +114,12 @@ public class UserInterface {
                     speedCats.setText(String.valueOf(V1));
                     speedDogs.setText(String.valueOf(V2));
                     //Вывод диалогового окна с ошибкой
+                    String errorMsg = "Вводимые данные должны содержать только числа";
+                    if(!exception.getMessage().contains("For input"))
+                        errorMsg = exception.getMessage();
                     JOptionPane.showMessageDialog(
                             panelImages,
-                            "Вводимые данные должны содержать только целые положительные числа",
+                            errorMsg,
                             "Ошибка вводимых данных",
                             JOptionPane.ERROR_MESSAGE
                     );

@@ -5,12 +5,13 @@ import constants.Parameters;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Point2D;
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.Random;
 import static constants.Parameters.*;
 
 //Абстрактный класс животных
-public abstract class Pets implements IBehaviour{
+public abstract class Pets implements IBehaviour, Serializable {
     private String type;
     private int timeBirth;
     private int id;
@@ -29,6 +30,10 @@ public abstract class Pets implements IBehaviour{
 
     public int getTimeBirth() {
         return timeBirth;
+    }
+
+    public void setTimeBirth(int timeBirth) {
+        this.timeBirth = timeBirth;
     }
 
     public int getId() {

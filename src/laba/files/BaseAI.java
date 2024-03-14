@@ -14,25 +14,19 @@ public abstract class BaseAI implements Runnable{
         this.speed = speed;
     }
     //Включение/выключение передвижения у котов
-    public void changeCatsAI(boolean move){
-        if(move){
+    public void changeCatsAI(){
+        if(moveCats){
             synchronized (pet){
-                moveCats = true;
                 pet.notify();
             }
-        }else{
-            moveCats = false;
         }
     }
     //Включение/выключение передвижения у собак
-    public void changeDogsAI(boolean move){
-        if(move){
+    public void changeDogsAI(){
+        if(moveDogs){
             synchronized (pet){
-                moveDogs = true;
                 pet.notify();
             }
-        }else{
-            moveDogs = false;
         }
     }
     //Плавное передвежение с течением времени

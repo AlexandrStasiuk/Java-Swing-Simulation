@@ -35,9 +35,12 @@ public class UpdateAction extends AbstractAction {
                 speedCats.setText(String.valueOf(V1));
                 speedDogs.setText(String.valueOf(V2));
                 //Вывод диалогового окна с ошибкой
+                String errorMsg = "Вводимые данные должны содержать только числа";
+                if(!exception.getMessage().contains("For input"))
+                    errorMsg = exception.getMessage();
                 JOptionPane.showMessageDialog(
                         panelImages,
-                        "Вводимые данные должны содержать только целые положительные числа",
+                        errorMsg,
                         "Ошибка вводимых данных",
                         JOptionPane.ERROR_MESSAGE
                 );
