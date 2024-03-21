@@ -67,6 +67,8 @@ public class DialogConsole  extends JDialog {
                     try(BufferedReader reader = new BufferedReader(new InputStreamReader(inputCommandStream))){
                         //Получение команды
                         String[] str = jTextArea.getText().split("\n");
+                        if(str.length == 0)
+                            return;
                         String command = str[str.length - 1].toLowerCase();
                         //Запись команды в поток
                         outputCommandStream.write(command.getBytes());

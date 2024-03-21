@@ -18,13 +18,6 @@ public class FrameCustom {
         JFrame jFrame = new JFrame();
         //Изменение адаптера закрытия окна
         jFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        jFrame.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                Habitat.createConfigFile();
-                jFrame.dispose();
-            }
-        });
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         //Определение рамеров окна
         WIDTH = dimension.width*3/4;

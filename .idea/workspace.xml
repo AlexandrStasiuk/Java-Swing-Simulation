@@ -4,22 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b96991b8-c599-4896-8ea5-af10f22b1233" name="Changes" comment="Лаба 4">
-      <change afterPath="$PROJECT_DIR$/src/actions/LoadPetsAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/actions/SavePetsAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/DialogConsole.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/laba/files/GenerationThread.java" afterDir="false" />
+    <list default="true" id="b96991b8-c599-4896-8ea5-af10f22b1233" name="Changes" comment="Лаба 5">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/laba/files/ClientThread.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/servers/HabitatServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actions/UpdateAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/UpdateAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.txt" beforeDir="false" afterPath="$PROJECT_DIR$/config.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DialogConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DialogConsole.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/FrameCustom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FrameCustom.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TimerButtonsMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TimerButtonsMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/constants/Components.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/Components.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/constants/Parameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/Parameters.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/laba/files/BaseAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/laba/files/BaseAI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/laba/files/Habitat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/laba/files/Habitat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/laba/files/Pets.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/laba/files/Pets.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +60,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.Habitat.executor&quot;: &quot;Run&quot;,
+    &quot;Application.HabitatServer.executor&quot;: &quot;Run&quot;,
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
@@ -76,7 +74,13 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/sasha/IdeaProjects/LabaProga/src/Main.java&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
+    ]
   }
 }</component>
   <component name="RecentsManager">
@@ -86,6 +90,44 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\sasha\IdeaProjects\LabaProga\img" />
     </key>
+  </component>
+  <component name="RunManager" selected="Application.Habitat">
+    <configuration name="Habitat" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="laba.files.Habitat" />
+      <module name="LabaProga" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="laba.files.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HabitatServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="servers.HabitatServer" />
+      <module name="LabaProga" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="servers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Habitat" />
+      <item itemvalue="Application.HabitatServer" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Habitat" />
+        <item itemvalue="Application.HabitatServer" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -118,7 +160,14 @@
       <workItem from="1709897140691" duration="1224000" />
       <workItem from="1710245778214" duration="87000" />
       <workItem from="1710333259824" duration="11668000" />
-      <workItem from="1710408811017" duration="22406000" />
+      <workItem from="1710408811017" duration="23201000" />
+      <workItem from="1710578078402" duration="49000" />
+      <workItem from="1710681074820" duration="27523000" />
+      <workItem from="1710745518078" duration="29928000" />
+      <workItem from="1710941996127" duration="807000" />
+      <workItem from="1710943555427" duration="86000" />
+      <workItem from="1710943649560" duration="471000" />
+      <workItem from="1711009574958" duration="708000" />
     </task>
     <task id="LOCAL-00001" summary="Лаба 1">
       <option name="closed" value="true" />
@@ -184,7 +233,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709898358235</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Лаба 5">
+      <option name="closed" value="true" />
+      <created>1710436606625</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1710436606625</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -206,6 +263,7 @@
     <MESSAGE value="Лаба 2" />
     <MESSAGE value="Лаба 3" />
     <MESSAGE value="Лаба 4" />
-    <option name="LAST_COMMIT_MESSAGE" value="Лаба 4" />
+    <MESSAGE value="Лаба 5" />
+    <option name="LAST_COMMIT_MESSAGE" value="Лаба 5" />
   </component>
 </project>

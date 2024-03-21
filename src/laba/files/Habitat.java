@@ -1,8 +1,13 @@
 package laba.files;
 
 import java.io.*;
+import java.net.ConnectException;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.nio.file.Files;
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Executors;
 
 import components.*;
@@ -11,7 +16,16 @@ import static constants.Components.*;
 import static constants.Parameters.*;
 
 public class Habitat {
-    public static void main(String[] args) {
+    public static void main(String[] args){
+        //Добавление сохранения кофиг файла при завершении работы программы
+        Runtime.getRuntime().addShutdownHook(new Thread(){
+            @Override
+            public void run() {
+                createConfigFile();
+                System.out.println("Конфигурационный файл сохранен");
+            }
+        });
+        //clientServerConnection();
         getConfigFile();
         Menu.addMenu();
         Panels.addPanels();
@@ -39,6 +53,15 @@ public class Habitat {
             panelImages.repaint();
             flPreloadPets = false;
         }
+        //System.out.println("Смена" + petsChanged);
+        //if(!petsChanged.isEmpty()){
+        //    System.out.println("Замена");
+        //    petsChanged.forEach(pet -> {
+        //        panelImages.add(pet.getImageComponent());
+        //    });
+        //    panelImages.repaint();
+        //    petsChanged.clear();
+        //}
         //Удаление объекта
         petsTimeBirthMap.entrySet().removeIf(petMap -> {
             Integer key = petMap.getKey();
@@ -260,5 +283,40 @@ public class Habitat {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+    private static void clientServerConnection(){
+        try{
+            Socket socket = new Socket(InetAddress.getLocalHost(), port);
+            inputStream = new ObjectInputStream(socket.getInputStream());
+            outputStream = new ObjectOutputStream(socket.getOutputStream());
+            System.out.println("Соединение с сервером установлено у клиента - " + socket);
+            clientPort = socket.getLocalPort();
+            clientsList = (ArrayList<String>) inputStream.readObject();
+            System.out.println("Клиенты - " + clientsList);
+            new ClientThread(socket).start();
+        }catch (ConnectException e){
+            e.printStackTrace(System.out);
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+    public static ArrayList<Pets> getAllCats(){
+        ArrayList cats = new ArrayList();
+        petsList.forEach(pet -> {
+            if(pet.getType().equals("cat"))
+                cats.add(pet);
+        });
+        return cats;
+    }
+    public static ArrayList<Pets> getAllDogs(){
+        ArrayList dogs = new ArrayList();
+        petsList.forEach(pet -> {
+            if(pet.getType().equals("dog"))
+                dogs.add(pet);
+        });
+        return dogs;
     }
 }
