@@ -4,11 +4,17 @@ import actions.LoadPetsAction;
 import actions.SavePetsAction;
 import actions.ShowInfoAction;
 import laba.files.BaseAI;
+import laba.files.Habitat;
 import laba.files.Pets;
+import laba.files.PetsSQL;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import static constants.Components.*;
 import static constants.Parameters.*;
@@ -93,5 +99,148 @@ public class Menu {
         savePets.addActionListener(new SavePetsAction());
         jMenu.add(loadPets);
         loadPets.addActionListener(new LoadPetsAction());
+        //jMenu.addSeparator();
+        //Список всех подключенных клиентов
+        //jMenu.add(clientsMenu);
+        //updateClientsMenu();
+        //Сохранение объектов в базу данных
+        jMenu.addSeparator();
+        jMenu.add(menuSavePetsSQL);
+        menuSavePetsSQL.add(saveAllPetsSQL);
+        saveAllPetsSQL.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            PetsSQL.savePets();
+                        } catch (SQLException ex) {
+                            ex.printStackTrace(System.err);
+                        }
+                    }
+                }).start();
+            }
+        });
+        menuSavePetsSQL.add(saveCatsSQL);
+        saveCatsSQL.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            PetsSQL.saveCats();
+                        } catch (SQLException ex) {
+                            ex.printStackTrace(System.err);
+                        }
+                    }
+                }).start();
+            }
+        });
+        menuSavePetsSQL.add(saveDogsSQL);
+        saveDogsSQL.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            PetsSQL.saveDogs();
+                        } catch (SQLException ex) {
+                            ex.printStackTrace(System.err);
+                        }
+                    }
+                }).start();
+            }
+        });
+        //Загрузка объектов из базы данных
+        jMenu.add(menuLoadPetsSQL);
+        menuLoadPetsSQL.add(loadAllPetsSQL);
+        loadAllPetsSQL.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            PetsSQL.getPets();
+                        } catch (SQLException ex) {
+                            ex.printStackTrace(System.err);
+                        }
+                    }
+                }).start();
+            }
+        });
+        menuLoadPetsSQL.add(loadCatsSQL);
+        loadCatsSQL.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            PetsSQL.getCats();
+                        } catch (SQLException ex) {
+                            ex.printStackTrace(System.err);
+                        }
+                    }
+                }).start();
+            }
+        });
+        menuLoadPetsSQL.add(loadDogsSQL);
+        loadDogsSQL.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            PetsSQL.getDogs();
+                        } catch (SQLException ex) {
+                            ex.printStackTrace(System.err);
+                        }
+                    }
+                }).start();
+            }
+        });
     }
+
+    public static void updateClientsMenu(){
+        clientsMenu.removeAll();
+        JMenuItem jMenuItemMe = new JMenuItem("Мой клиент");
+        jMenuItemMe.setEnabled(false);
+        clientsMenu.add(jMenuItemMe);
+        if (clientsList.size() > 1)
+            clientsMenu.addSeparator();
+        clientsList.forEach(client -> {
+            if(!client.equals(clientPort + "")){
+                JMenuItem jMenuItem = new JMenuItem(client);
+                jMenuItem.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        try {
+                            outputStream.writeObject(client);
+                            outputStream.writeObject(Habitat.getAllCats());
+                            outputStream.flush();
+                            petsList.removeIf(pet -> {
+                                if(pet.getType().equals("cat")){
+                                    petsTimeBirthMap.remove(pet.getId());
+                                    petsIdsSet.remove(pet.getId());
+                                    panelImages.remove(pet.getImageComponent());
+                                    panelImages.repaint();
+                                    return true;
+                                }
+                                return false;
+                            });
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    }
+                });
+                clientsMenu.add(jMenuItem);
+            }
+        });
+    }
+
 }

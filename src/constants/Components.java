@@ -52,4 +52,13 @@ public class Components {
     public static JMenuItem showConsole = new JMenuItem("Консоль");
     public static JMenuItem savePets = new JMenuItem("Сохранить в файл");
     public static JMenuItem loadPets = new JMenuItem("Загрузить из файла");
+    public static JMenu clientsMenu = new JMenu("Список подключенных клиентов");
+    public static JMenu menuSavePetsSQL = new JMenu("Сохранение объектов в БД");
+    public static JMenuItem saveAllPetsSQL = new JMenuItem("Сохранить все объекты");
+    public static JMenuItem saveCatsSQL = new JMenuItem("Сохранить только котов");
+    public static JMenuItem saveDogsSQL = new JMenuItem("Сохранить только собак");
+    public static JMenu menuLoadPetsSQL = new JMenu("Загрузка объектов из БД");
+    public static JMenuItem loadAllPetsSQL = new JMenuItem("Загрузить все объекты");
+    public static JMenuItem loadCatsSQL = new JMenuItem("Загрузить только котов");
+    public static JMenuItem loadDogsSQL = new JMenuItem("Загрузить только собак");
 }

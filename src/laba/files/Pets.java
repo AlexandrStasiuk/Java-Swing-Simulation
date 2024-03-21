@@ -11,7 +11,7 @@ import java.util.Random;
 import static constants.Parameters.*;
 
 //Абстрактный класс животных
-public abstract class Pets implements IBehaviour, Serializable {
+public abstract class Pets implements IBehaviour, Serializable, Comparable<Pets> {
     private String type;
     private int timeBirth;
     private int id;
@@ -38,6 +38,24 @@ public abstract class Pets implements IBehaviour, Serializable {
 
     public int getId() {
         return id;
+    }
+
+    public Pets(String type, int timeBirth, int id, int speedTraectoryX, int speedTraectoryY, int X, int Y) {
+        this.type = type;
+        this.timeBirth = timeBirth;
+        this.id = id;
+        this.speedTraectoryX = speedTraectoryX;
+        this.speedTraectoryY = speedTraectoryY;
+        if(type.equals("cat"))
+            imageComponent = new ImageComponent("img/cat.png");
+        else
+            imageComponent = new ImageComponent("img/dog.png");
+        imageComponent.setBounds(
+                X,
+                Y,
+                imageComponent.getWidthImage(),
+                imageComponent.getHeightImage()
+        );
     }
 
     public Pets(int timeBirth, String fileName, String type) {
@@ -110,5 +128,10 @@ public abstract class Pets implements IBehaviour, Serializable {
         return "Животное = '" + type + '\'' +
                 ", Время рождения = " + timeBirth +
                 ", Id = " + id;
+    }
+
+    @Override
+    public int compareTo(Pets o) {
+        return this.timeBirth - o.getTimeBirth();
     }
 }

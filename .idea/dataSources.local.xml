@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal" created-in="IU-233.14475.28">
-    <data-source name="postgres@localhost" uuid="920ab6c6-6e3e-4818-ad56-3e4f82baf3a4">
+    <data-source name="proga-laba@localhost" uuid="8e819b55-bcc7-4f18-a75e-9ba05e8f1551">
       <database-info product="PostgreSQL" version="16.1" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.6.0" dbms="POSTGRES" exact-version="16.1" exact-driver-version="42.6">
         <identifier-quote-string>&quot;</identifier-quote-string>
       </database-info>

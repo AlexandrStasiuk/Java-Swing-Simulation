@@ -2,12 +2,12 @@ package constants;
 
 import laba.files.Pets;
 
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Timer;
-import java.util.TreeSet;
+import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -25,11 +25,9 @@ public class Parameters {
     //Параметры согласно варианту
     public static int N1 = 1;
     public static float P1 = 1f;
-    public static int L1 = 10;
     public static int V1 = 100;
     public static int N2 = 1;
     public static float P2 = 1f;
-    public static int L2 = 1;
     public static int V2 = 100;
     //Размеры экрана
     public static int WIDTH = 0;
@@ -43,5 +41,16 @@ public class Parameters {
     //Видимость диалогового окна
     public static boolean flShowInfo = false;
     //Есть ли подгруженные объекты из файла
-    public static boolean flPreloadPets = false;
+    public static boolean flPreloadFilePets = false;
+    //Есть ли подгруженные объекты из БД
+    public static boolean flPreloadSQLPets = false;
+    //Есть ли обмененные объекты с другим клиентом
+    public static ArrayList<Pets> petsChanged= new ArrayList<>();
+    //Порт для сервера
+    public static int port = 8080;
+    public static List<String> clientsList = new ArrayList<>();
+    public static int clientPort;
+    public static ObjectInputStream inputStream;
+    public static ObjectOutputStream outputStream;
+
 }

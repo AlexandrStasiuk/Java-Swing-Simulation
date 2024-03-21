@@ -6,6 +6,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.nio.file.Files;
+import java.sql.*;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Executors;
@@ -45,13 +46,16 @@ public class Habitat {
         //Изменение времени
         timeElapsed += 1;
         textTime.repaint();
-        //Если есть подгруженные объекты из файла, то отрисовать их
-        if(flPreloadPets){
+        //Если есть подгруженные объекты из файла или БД, то отрисовать их
+        if(flPreloadFilePets || flPreloadSQLPets){
             petsList.forEach(pets -> {
                 panelImages.add(pets.getImageComponent());
             });
             panelImages.repaint();
-            flPreloadPets = false;
+            if (flPreloadFilePets)
+                flPreloadFilePets = false;
+            if (flPreloadSQLPets)
+                flPreloadSQLPets = false;
         }
         //System.out.println("Смена" + petsChanged);
         //if(!petsChanged.isEmpty()){
@@ -67,7 +71,7 @@ public class Habitat {
             Integer key = petMap.getKey();
             Integer value = petMap.getValue();
             //Проверка на истекшее время жизни
-            if(value <= timeElapsed - L1){
+            if(value <= timeElapsed - Cats.timeLife){
                 //Перебор объектов
                 for(Pets pet: petsList){
                     //Если объект соответсвует параметрам, то удалить его везде
@@ -80,7 +84,7 @@ public class Habitat {
                 }
             }
             //Проверка на истекшее время жизни
-            if(value <= timeElapsed - L2){
+            if(value <= timeElapsed - Dogs.timeLife){
                 //Перебор объектов
                 for(Pets pet: petsList){
                     //Если объект соответсвует параметрам, то удалить его везде
@@ -183,8 +187,8 @@ public class Habitat {
             throw new NumberFormatException("Скорость объектов не может быть больше 400");
         N1 = tempN1;
         N2 = tempN2;
-        L1 = tempL1;
-        L2 = tempL2;
+        Cats.timeLife = tempL1;
+        Dogs.timeLife = tempL2;
         V1 = tempV1;
         V2 = tempV2;
         P1 = (float)percents[comboBoxCats.getSelectedIndex()]/100;
@@ -198,8 +202,8 @@ public class Habitat {
             parameters.put("Время рождения собак", N2);
             parameters.put("Вероятность рождения котов", (int)(P1*100));
             parameters.put("Вероятность рождения собак", (int)(P2*100));
-            parameters.put("Время жизни котов", L1);
-            parameters.put("Время жизни собак", L2);
+            parameters.put("Время жизни котов", Cats.timeLife);
+            parameters.put("Время жизни собак", Dogs.timeLife);
             parameters.put("Скорость передвижения котов", V1);
             parameters.put("Скорость передвижения собак", V2);
             parameters.forEach((k, v) -> {
@@ -247,10 +251,10 @@ public class Habitat {
                         P2 = (float)Integer.parseInt(keyAndValue[1])/100;
                         break;
                     case "Время жизни котов":
-                        L1 = Integer.parseInt(keyAndValue[1]);
+                        Cats.timeLife = Integer.parseInt(keyAndValue[1]);
                         break;
                     case "Время жизни собак":
-                        L2 = Integer.parseInt(keyAndValue[1]);
+                        Dogs.timeLife = Integer.parseInt(keyAndValue[1]);
                         break;
                     case "Скорость передвижения котов":
                         V1 = Integer.parseInt(keyAndValue[1]);

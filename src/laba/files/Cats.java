@@ -5,11 +5,13 @@ import java.awt.geom.Point2D;
 import static constants.Components.panelImages;
 
 public class Cats extends Pets{
-    public static int timeLife;
+    public static int timeLife = 1;
+    public Cats(String type, int timeBirth, int id, int speedTraectoryX, int speedTraectoryY, int X, int Y) {
+        super(type, timeBirth, id, speedTraectoryX, speedTraectoryY, X, Y);
+    }
 
-    public Cats(int timeBirth, int timeLife) {
+    public Cats(int timeBirth) {
         super(timeBirth, "img/cat.png", "cat");
-        Cats.timeLife = timeLife;
     }
     //Переопределенный метод добавления картинки
     @Override

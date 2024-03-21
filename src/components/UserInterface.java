@@ -3,6 +3,8 @@ package components;
 import actions.ShowInfoAction;
 import actions.StopAction;
 import actions.UpdateAction;
+import laba.files.Cats;
+import laba.files.Dogs;
 
 import javax.swing.*;
 import java.awt.*;
@@ -109,8 +111,8 @@ public class UserInterface {
                     timerDogs.setText(String.valueOf(N2));
                     comboBoxCats.setSelectedItem((int)(P1*100));
                     comboBoxDogs.setSelectedItem((int)(P2*100));
-                    timeLifeCats.setText(String.valueOf(L1));
-                    timeLifeDogs.setText(String.valueOf(L2));
+                    timeLifeCats.setText(String.valueOf(Cats.timeLife));
+                    timeLifeDogs.setText(String.valueOf(Dogs.timeLife));
                     speedCats.setText(String.valueOf(V1));
                     speedDogs.setText(String.valueOf(V2));
                     //Вывод диалогового окна с ошибкой
