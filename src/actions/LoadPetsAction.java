@@ -49,7 +49,7 @@ public class LoadPetsAction extends AbstractAction {
         }
         try(ObjectInputStream stream = new ObjectInputStream(new BufferedInputStream(new FileInputStream(file)))){
             petsList.clear();
-            flPreloadPets = true;
+            flPreloadFilePets = true;
             if(flStart){
                 //Проверка на запущенную симуляцию
                 textTime.setVisible(false);
@@ -69,8 +69,8 @@ public class LoadPetsAction extends AbstractAction {
             while ((pet = (Pets) stream.readObject()) != null){
                 //Корректирование времени
                 if(correctTime == -1)
-                    correctTime = pet.getTimeBirth() - 1;
-                pet.setTimeBirth(pet.getTimeBirth() - correctTime);
+                    correctTime = pet.getTimeBirth();
+                pet.setTimeBirth(pet.getTimeBirth() - correctTime + 1);
                 //Добавление объектов
                 petsList.add(pet);
                 petsIdsSet.add(pet.getId());
