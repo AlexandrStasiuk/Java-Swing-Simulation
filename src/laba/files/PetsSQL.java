@@ -14,9 +14,9 @@ import static laba.files.Habitat.setEnableStart;
 public class PetsSQL {
     //Имя пользователя БД
     private final static String userNameSQL = "postgres";
-    //Парол final ь пользователя БД
+    //Пароль пользователя БД
     private final static String passwordSQL = "user348576";
-    //Ссылк final а на БД
+    //Ссылка на БД
     private final static String connectionUrlSQL = "jdbc:postgresql://localhost:5432/proga-laba";
     //Проверка и создание таблицы
     private static void checkTableCreate(Connection connection, Statement statement) throws SQLException {

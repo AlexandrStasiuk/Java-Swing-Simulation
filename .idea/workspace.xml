@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b96991b8-c599-4896-8ea5-af10f22b1233" name="Changes" comment="Лаба 7">
-      <change afterPath="$PROJECT_DIR$/src/laba/files/ClientThread.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/servers/HabitatServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/8e819b55-bcc7-4f18-a75e-9ba05e8f1551.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/8e819b55-bcc7-4f18-a75e-9ba05e8f1551.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/920ab6c6-6e3e-4818-ad56-3e4f82baf3a4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/920ab6c6-6e3e-4818-ad56-3e4f82baf3a4/storage_v2/_src_/database/postgres.edMnLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/920ab6c6-6e3e-4818-ad56-3e4f82baf3a4/storage_v2/_src_/database/postgres.edMnLQ/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/920ab6c6-6e3e-4818-ad56-3e4f82baf3a4/storage_v2/_src_/database/postgres.edMnLQ/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/920ab6c6-6e3e-4818-ad56-3e4f82baf3a4/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" />
+    <list default="true" id="b96991b8-c599-4896-8ea5-af10f22b1233" name="Changes" comment="Лаба 6">
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.txt" beforeDir="false" afterPath="$PROJECT_DIR$/config.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DialogConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DialogConsole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/laba/files/Habitat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/laba/files/Habitat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/laba/files/PetsSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/laba/files/PetsSQL.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,6 +166,7 @@
       <workItem from="1710943649560" duration="471000" />
       <workItem from="1711009574958" duration="17693000" />
       <workItem from="1711035611614" duration="174000" />
+      <workItem from="1711125410626" duration="1822000" />
     </task>
     <task id="LOCAL-00001" summary="Лаба 1">
       <option name="closed" value="true" />
@@ -290,6 +288,7 @@
     <MESSAGE value="Лаба 4" />
     <MESSAGE value="Лаба 5" />
     <MESSAGE value="Лаба 7" />
-    <option name="LAST_COMMIT_MESSAGE" value="Лаба 7" />
+    <MESSAGE value="Лаба 6" />
+    <option name="LAST_COMMIT_MESSAGE" value="Лаба 6" />
   </component>
 </project>
