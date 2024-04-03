@@ -9,12 +9,10 @@ import laba.files.Pets;
 import laba.files.PetsSQL;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import static constants.Components.*;
 import static constants.Parameters.*;
@@ -99,10 +97,10 @@ public class Menu {
         savePets.addActionListener(new SavePetsAction());
         jMenu.add(loadPets);
         loadPets.addActionListener(new LoadPetsAction());
-        //jMenu.addSeparator();
+        jMenu.addSeparator();
         //Список всех подключенных клиентов
-        //jMenu.add(clientsMenu);
-        //updateClientsMenu();
+        jMenu.add(clientsMenu);
+        updateClientsMenu();
         //Сохранение объектов в базу данных
         jMenu.addSeparator();
         jMenu.add(menuSavePetsSQL);
@@ -205,36 +203,36 @@ public class Menu {
             }
         });
     }
-
+    //Обновление списка клиентов
     public static void updateClientsMenu(){
+        //Очистка старого списка
         clientsMenu.removeAll();
+        if(clientsList.isEmpty())
+            return;
+        //Определение текущего клиента
         JMenuItem jMenuItemMe = new JMenuItem("Мой клиент");
         jMenuItemMe.setEnabled(false);
         clientsMenu.add(jMenuItemMe);
         if (clientsList.size() > 1)
             clientsMenu.addSeparator();
+        //Добавление каждого клиента и слушателя для него
         clientsList.forEach(client -> {
             if(!client.equals(clientPort + "")){
                 JMenuItem jMenuItem = new JMenuItem(client);
                 jMenuItem.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        //При нажатии на клиента начинается процесс обмена
                         try {
                             outputStream.writeObject(client);
                             outputStream.writeObject(Habitat.getAllCats());
-                            outputStream.flush();
-                            petsList.removeIf(pet -> {
-                                if(pet.getType().equals("cat")){
-                                    petsTimeBirthMap.remove(pet.getId());
-                                    petsIdsSet.remove(pet.getId());
-                                    panelImages.remove(pet.getImageComponent());
-                                    panelImages.repaint();
-                                    return true;
-                                }
-                                return false;
-                            });
                         } catch (IOException ex) {
-                            throw new RuntimeException(ex);
+                            JOptionPane.showMessageDialog(
+                                    panelImages,
+                                    ex.getMessage(),
+                                    "Ошибка обмена с клиентом",
+                                    JOptionPane.ERROR_MESSAGE
+                            );
                         }
                     }
                 });

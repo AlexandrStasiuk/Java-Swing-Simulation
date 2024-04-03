@@ -1,18 +1,12 @@
 package laba.files;
 
 import java.io.*;
-import java.net.ConnectException;
-import java.net.InetAddress;
-import java.net.Socket;
-import java.net.UnknownHostException;
-import java.nio.file.Files;
-import java.sql.*;
 import java.util.*;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Executors;
 
 import components.*;
 import components.Menu;
+
 import static constants.Components.*;
 import static constants.Parameters.*;
 
@@ -26,7 +20,7 @@ public class Habitat {
                 System.out.println("Конфигурационный файл сохранен");
             }
         });
-        //clientServerConnection();
+        clientServerConnection();
         getConfigFile();
         Menu.addMenu();
         Panels.addPanels();
@@ -57,16 +51,9 @@ public class Habitat {
             if (flPreloadSQLPets)
                 flPreloadSQLPets = false;
         }
-        //System.out.println("Смена" + petsChanged);
-        //if(!petsChanged.isEmpty()){
-        //    System.out.println("Замена");
-        //    petsChanged.forEach(pet -> {
-        //        panelImages.add(pet.getImageComponent());
-        //    });
-        //    panelImages.repaint();
-        //    petsChanged.clear();
-        //}
-        //Удаление объекта
+        //Проверка на наличие животных с обмена
+        if(!petsChangedList.isEmpty())
+            changePets();
         petsTimeBirthMap.entrySet().removeIf(petMap -> {
             Integer key = petMap.getKey();
             Integer value = petMap.getValue();
@@ -288,25 +275,11 @@ public class Habitat {
             throw new RuntimeException(e);
         }
     }
+    //Подключение к серверу в отдельном потоке
     private static void clientServerConnection(){
-        try{
-            Socket socket = new Socket(InetAddress.getLocalHost(), port);
-            inputStream = new ObjectInputStream(socket.getInputStream());
-            outputStream = new ObjectOutputStream(socket.getOutputStream());
-            System.out.println("Соединение с сервером установлено у клиента - " + socket);
-            clientPort = socket.getLocalPort();
-            clientsList = (ArrayList<String>) inputStream.readObject();
-            System.out.println("Клиенты - " + clientsList);
-            new ClientThread(socket).start();
-        }catch (ConnectException e){
-            e.printStackTrace(System.out);
-        } catch (UnknownHostException e) {
-            throw new RuntimeException(e);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
+        new ClientThread().start();
     }
+    //Получение всех котов
     public static ArrayList<Pets> getAllCats(){
         ArrayList cats = new ArrayList();
         petsList.forEach(pet -> {
@@ -315,6 +288,7 @@ public class Habitat {
         });
         return cats;
     }
+    //Получение всех собак
     public static ArrayList<Pets> getAllDogs(){
         ArrayList dogs = new ArrayList();
         petsList.forEach(pet -> {
@@ -322,5 +296,17 @@ public class Habitat {
                 dogs.add(pet);
         });
         return dogs;
+    }
+    //Добовление животных после обмена
+    private static void changePets(){
+        petsChangedList.forEach(pet -> {
+            petsList.add(pet);
+            petsIdsSet.add(pet.getId());
+            petsTimeBirthMap.put(pet.getId(), pet.getTimeBirth());
+            panelImages.add(pet.getImageComponent());
+        });
+        petsChangedList.clear();
+        Collections.sort(petsList);
+        panelImages.repaint();
     }
 }

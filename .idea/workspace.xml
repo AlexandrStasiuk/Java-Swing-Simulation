@@ -5,12 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b96991b8-c599-4896-8ea5-af10f22b1233" name="Changes" comment="Лаба 6">
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/8e819b55-bcc7-4f18-a75e-9ba05e8f1551.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/8e819b55-bcc7-4f18-a75e-9ba05e8f1551.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.txt" beforeDir="false" afterPath="$PROJECT_DIR$/config.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DialogConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DialogConsole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/Parameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/Parameters.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/laba/files/ClientThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/laba/files/ClientThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/laba/files/Habitat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/laba/files/Habitat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/laba/files/PetsSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/laba/files/PetsSQL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/servers/HabitatServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/servers/HabitatServer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,6 +169,9 @@
       <workItem from="1711009574958" duration="17693000" />
       <workItem from="1711035611614" duration="174000" />
       <workItem from="1711125410626" duration="1822000" />
+      <workItem from="1711263288392" duration="76000" />
+      <workItem from="1711615352687" duration="309000" />
+      <workItem from="1712148842826" duration="12763000" />
     </task>
     <task id="LOCAL-00001" summary="Лаба 1">
       <option name="closed" value="true" />

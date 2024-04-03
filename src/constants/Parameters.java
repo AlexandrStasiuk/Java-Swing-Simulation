@@ -44,12 +44,15 @@ public class Parameters {
     public static boolean flPreloadFilePets = false;
     //Есть ли подгруженные объекты из БД
     public static boolean flPreloadSQLPets = false;
-    //Есть ли обмененные объекты с другим клиентом
-    public static ArrayList<Pets> petsChanged= new ArrayList<>();
+    //Список обмененных животных
+    public static ArrayList<Pets> petsChangedList= new ArrayList<>();
     //Порт для сервера
     public static int port = 8080;
-    public static List<String> clientsList = new ArrayList<>();
+    //Список клиентов
+    public static List<String> clientsList = new LinkedList<>();
+    //Порт текущего клиента
     public static int clientPort;
+    //Потоки для работы с сервером
     public static ObjectInputStream inputStream;
     public static ObjectOutputStream outputStream;
 
